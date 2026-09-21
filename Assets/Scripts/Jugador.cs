@@ -5,6 +5,7 @@ public class Jugador : MonoBehaviour
 {
     CharacterController characterController;
     PlayerInput playerInput;
+    Animator animator;
 
     [Header("Configuración de Salto y Gravedad")]
     [Range(10f, 50f)]
@@ -15,7 +16,7 @@ public class Jugador : MonoBehaviour
     Vector3 velocidad;
     bool is_grounded;
     float cooldownRecuperacion; //tiempo que tardas en volver a tu posicion normal
-    Animator animator;
+
     float tiempoAgachado;
     [SerializeField] float alturaNormal = 2f;
     [SerializeField] float alturaAgachado = 1f;
@@ -38,7 +39,7 @@ public class Jugador : MonoBehaviour
         cooldownRecuperacion -= Time.deltaTime;
         is_grounded = characterController.isGrounded; 
 
-        if (is_grounded && velocidad.y < 0)
+        if (is_grounded && velocidad.y < 0) // ------ SUELO
         {
             velocidad.y = -2f;
         }
@@ -47,7 +48,7 @@ public class Jugador : MonoBehaviour
             
             //animator.SetInteger("Estado", 3); preparar cayendo
         }
-        if (tiempoAgachado > 0)
+        if (tiempoAgachado > 0) // ------ AGACHARSE
         {
             tiempoAgachado -= Time.deltaTime;
             animator.SetInteger("Estado", 2);
@@ -65,7 +66,7 @@ public class Jugador : MonoBehaviour
 
             animator.SetInteger("Estado", 3);
         }
-        if (playerInput.actions["Jump"].WasPressedThisFrame() && is_grounded)
+        if (playerInput.actions["Jump"].WasPressedThisFrame() && is_grounded) // ------ SALTO
         {
             velocidad.y = fuerzaSalto;
             animator.SetInteger("Estado", 1);
@@ -78,11 +79,11 @@ public class Jugador : MonoBehaviour
         {
             velocidad.x = 0;
         }
-        if (Physics.Raycast(this.transform.position + Vector3.up * 0.5f, Vector3.right, 0.35f))
+        if (Physics.Raycast(this.transform.position + Vector3.up * 0.5f, Vector3.right, 0.35f)) // ------ DETECTAR OBSTÁCULO
         {
             cooldownRecuperacion = 0.3F;
         }
-        velocidad.y -= gravedad * Time.deltaTime; 
+        velocidad.y -= gravedad * Time.deltaTime; //------ GRAVEDAD
         characterController.Move(velocidad * Time.deltaTime);
     }
 }
