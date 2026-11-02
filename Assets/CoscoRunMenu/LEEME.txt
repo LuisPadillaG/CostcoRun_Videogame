@@ -1,0 +1,76 @@
+===========================================================
+  COSCO RUN — PANTALLA DE INICIO (Unity 6000.4.10f1)
+===========================================================
+
+Esta carpeta arma una pantalla de inicio con:
+  - Video de fondo (en bucle)
+  - Título
+  - Botones "Start Game" y "Options"
+  - Panel de opciones que se abre y cierra
+
+-----------------------------------------------------------
+PASO 1 — Copiar los archivos a tu proyecto
+-----------------------------------------------------------
+Copia la carpeta "CoscoRunMenu" completa dentro de la carpeta
+"Assets" de tu proyecto de Unity. Debe quedar así:
+
+  TuProyecto/
+    Assets/
+      CoscoRunMenu/
+        MainMenuController.cs
+        VideoBackground.cs
+        Editor/
+          MainMenuBuilder.cs
+
+Unity compilará los scripts solo (espera unos segundos).
+
+-----------------------------------------------------------
+PASO 2 — Crear la pantalla
+-----------------------------------------------------------
+En la barra de menú de Unity (arriba) aparecerá un menú nuevo
+llamado "Cosco Run".
+
+  Haz clic en:  Cosco Run > Crear pantalla de inicio
+
+Esto crea la escena en Assets/Scenes/MainMenu.unity y la abre.
+Te saldrá un aviso con los siguientes pasos.
+
+-----------------------------------------------------------
+PASO 3 — Poner tu video
+-----------------------------------------------------------
+1. Arrastra tu archivo de video (.mp4, .mov o .webm) a la
+   carpeta Assets de tu proyecto.
+2. En la jerarquía (Hierarchy), selecciona el objeto "VideoPlayer".
+3. En el Inspector, busca el componente "Video Background".
+4. Arrastra tu video al campo "Video Clip".
+
+-----------------------------------------------------------
+PASO 4 — Conectar tu escena de juego
+-----------------------------------------------------------
+1. En la jerarquía selecciona "MenuCanvas".
+2. En el Inspector, en el componente "Main Menu Controller",
+   escribe en "Game Scene Name" el nombre EXACTO de la escena
+   de tu juego (la de Cosco Run corriendo).
+3. Agrega ambas escenas en File > Build Settings
+   (arrastra MainMenu y tu escena de juego a la lista).
+
+-----------------------------------------------------------
+PASO 5 — Probar
+-----------------------------------------------------------
+Presiona el botón Play. Deberías ver el video de fondo, el
+título y los botones. "Options" abre el panel; "Start Game"
+carga tu escena de juego.
+
+-----------------------------------------------------------
+PERSONALIZAR (opcional)
+-----------------------------------------------------------
+- TÍTULO: selecciona el objeto "Title" y cambia el texto, o
+  bórralo y pon una imagen (tu logo) en su lugar.
+- COLORES: los botones se ponen rojos al pasar el mouse. Para
+  cambiarlo, selecciona un botón y edita "Highlighted Color".
+- POSICIÓN: mueve los objetos "Title" y "MenuButtons" con la
+  herramienta de mover (tecla W) o desde el Rect Transform.
+
+Si algo no aparece, revisa la ventana Console (abajo) por si
+hay algún mensaje en rojo y me lo compartes.
+===========================================================
