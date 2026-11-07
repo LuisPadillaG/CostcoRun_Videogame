@@ -26,7 +26,7 @@ public class chancla : MonoBehaviour
 
     void Funciones()
     {
-
+        coin_lod = transform.Find("coin_lod").gameObject;
     }
     void Variables()
     {
@@ -46,6 +46,30 @@ public class chancla : MonoBehaviour
         //characterController.Move(velocidad * Time.deltaTime);
     }
 
+
+    void Chancla_Recoger()
+    {
+        recogida = true;//una sola vez
+
+        coin_lod.SetActive(false);
+        audioMoneda.Play();
+
+        Destroy(gameObject, 8f);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && !recogida)
+        {
+            Moneda_Recoger();
+        }
+    }
+
+
+
+
+
+  
 
 
 
