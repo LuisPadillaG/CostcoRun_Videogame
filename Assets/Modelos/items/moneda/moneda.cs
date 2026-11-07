@@ -29,14 +29,14 @@ public class moneda : MonoBehaviour
 
     void Valores()
     {
-        velocidad = 20f;
+        //velocidad = 20f;
     }
 
     // ---------------------- Funciones ---------------------- //
 
     void Moneda_Girar()
     {
-        transform.Rotate(0f, velocidad * Time.deltaTime, 0f);
+        transform.Rotate(0f, 0 * Time.deltaTime, 0f);
     }
 
     void Moneda_Recoger()
