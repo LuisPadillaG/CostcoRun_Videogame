@@ -4,11 +4,18 @@ using UnityEngine.InputSystem;
 public class chancla : MonoBehaviour
 {
 
-    [Header ("Player")]
+    [Header("Player")]
+    CharacterController JugadorCharacterControler;
     GameObject Jugador;
-    PlayerInput playerInput;
+    PlayerInput JugadorplayerInput;
     [SerializeField] float fuerzaSalto = 15f;
     Vector3 velocidad;
+
+    GameObject canchla;
+  
+
+    AudioSource audiocanchla;
+    bool recogida = false;
 
 
     void Start()
@@ -20,57 +27,50 @@ public class chancla : MonoBehaviour
 
     void Update()
     {
-        Jugador = GameObject.FindGameObjectWithTag("Player");
-        Salta_personaje();
+        Jugador = GameObject.FindGameObjectWithTag("Player");//jugador
+        JugadorCharacterControler = Jugador.GetComponent<CharacterController>();//character
+        JugadorplayerInput = Jugador.GetComponent<PlayerInput>();//playerinput
+        //Salta_personaje();
+        canchla = GameObject.FindGameObjectWithTag("Chancla").gameObject;
     }
 
     void Funciones()
     {
-        //coin_lod = transform.Find("coin_lod").gameObject;
+        
+        
     }
     void Variables()
     {
 
     }
-
-
-
-
-    void Salta_personaje()
+       
+    void Chancla_Recoger()//una sola vez
     {
-        
-        if (playerInput.actions["Jump"].WasPressedThisFrame()) 
-        {
-            velocidad.y = fuerzaSalto;
-        }
-        //characterController.Move(velocidad * Time.deltaTime);
-    }
+        recogida = true;
 
-    /*
-    void Chancla_Recoger()
-    {
-        recogida = true;//una sola vez
-
-        coin_lod.SetActive(false);
-        audioMoneda.Play();
+        canchla.SetActive(false);
+        //audiocanchla.Play();
 
         Destroy(gameObject, 8f);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !recogida)
+        if (other.CompareTag("Player"))
         {
-            Moneda_Recoger();
+            Chancla_Recoger();
+            Salta_personaje();
+            //Destroy(gameObject, 9);
         }
     }
-
-
-    */
-
-
-  
-
-
-
+    void Salta_personaje()
+    {
+        if (JugadorplayerInput.actions["Jump"].WasPressedThisFrame())
+        {
+            velocidad.y = fuerzaSalto;
+        }
+    }
 }
+/*
+ Saltar rapido
+ */

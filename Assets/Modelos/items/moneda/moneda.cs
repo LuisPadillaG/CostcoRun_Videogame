@@ -46,7 +46,7 @@ public class moneda : MonoBehaviour
         coin_lod.SetActive(false);
         audioMoneda.Play();
 
-        Destroy(gameObject, 8f);
+        //Destroy(gameObject, 8f);
     }
 
     void OnTriggerEnter(Collider other)

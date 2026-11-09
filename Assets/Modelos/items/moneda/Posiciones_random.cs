@@ -23,6 +23,7 @@ public class Posiciones_random : MonoBehaviour
     void Update()
     {
         GenerarAleatorio();
+
     }
 
     
@@ -57,10 +58,11 @@ public class Posiciones_random : MonoBehaviour
                 GameObject objet_copia = Instantiate(Object, new Vector3(this.transform.position.x, aleatorio, 0), Quaternion.identity);
 
                 //Se mueve
-                Vector3 objet_copia_mover;
-                objet_copia_mover = objet_copia.transform.position;
+                Vector3 objet_copia_mover = objet_copia.transform.position;
                 objet_copia_mover.z -= velocidad * Time.deltaTime;
                 objet_copia.transform.position = objet_copia_mover;
+                //objet_copia.transform.rotation = Quaternion.identity;
+                
 
                 /*
                 if(objet_copia.transform.position.x  >= -6)
@@ -72,6 +74,7 @@ public class Posiciones_random : MonoBehaviour
                 temporizadorActual = tiempo_espera; // Reiniciamos temporizador
             }
         }
+
     }
 
     /*
