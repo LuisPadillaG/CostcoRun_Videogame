@@ -17,7 +17,9 @@ public class chancla : MonoBehaviour
     [Header("Audio")]
     AudioSource audiocanchla;
 
+
     bool recogida = false;
+    public float velocidad_transicion = 3;
 
     void Start()
     {
@@ -32,6 +34,8 @@ public class chancla : MonoBehaviour
     {
         Chancla_Girar();
         limiteDeEfecto();
+        Chancla_Mover_x();
+        Chancla_Limite();
     }
 
     // ---------------------- Funciones ---------------------- //
@@ -48,6 +52,22 @@ public class chancla : MonoBehaviour
         //canchla.SetActive(false);
         chancla_objet.SetActive(false);
         //audiocanchla.Play();
+    }
+
+    void Chancla_Mover_x()
+    {
+        transform.position = new Vector3(
+            transform.position.x - velocidad_transicion * Time.deltaTime,
+            transform.position.y,
+            transform.position.z
+        );
+    }
+    void Chancla_Limite()
+    {
+        if (transform.position.x <= -6f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void limiteDeEfecto()

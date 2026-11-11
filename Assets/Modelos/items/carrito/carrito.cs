@@ -15,6 +15,8 @@ public class carrito : MonoBehaviour
     float tiempo_efecto = 0f;
     [SerializeField] float tiempo_limite_VidaCuandoLoRecoje = 26;
 
+    public float velocidad_transicion = 3;
+
     void Start()
     {
         caarrito = transform.Find("carrito_objet").gameObject;//<-NO CAMBIAR 
@@ -31,6 +33,8 @@ public class carrito : MonoBehaviour
     {
         Carrito_Girar();
         limiteDeEfecto();
+        Carrito_Mover_x();
+        Carrito_Limite();
 
     }
     
@@ -54,6 +58,22 @@ public class carrito : MonoBehaviour
                 Particle_corriendo.gameObject.SetActive(false);
                 Destroy(gameObject);
             }
+        }
+    }
+
+    void Carrito_Mover_x()
+    {
+        transform.position = new Vector3(
+            transform.position.x - velocidad_transicion * Time.deltaTime,
+            transform.position.y,
+            transform.position.z
+        );
+    }
+    void Carrito_Limite()
+    {
+        if (transform.position.x <= -6f)
+        {
+            Destroy(gameObject);
         }
     }
 

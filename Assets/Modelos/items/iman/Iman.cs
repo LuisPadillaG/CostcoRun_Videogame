@@ -17,6 +17,7 @@ public class Iman : MonoBehaviour
     float tiempo_efecto = 0f;
     [SerializeField] float tiempo_limite = 26f;
 
+    public float velocidad_transicion = 3;
     void Start()
     {
         iman_objet = transform.Find("iman_objet").gameObject;//<-NO CAMBIAR
@@ -25,6 +26,10 @@ public class Iman : MonoBehaviour
     void Update()
     {
         limiteDeEfecto();
+        Iman_Mover_x();
+        Iman_Limite();
+        Iman_Girar();
+
     }
 
     // ---------------------- Funciones ---------------------- //
@@ -39,6 +44,25 @@ public class Iman : MonoBehaviour
         moneda.imanActivo = true;//***/
 
         iman_objet.SetActive(false);
+    }
+    void Iman_Girar()
+    {
+        transform.Rotate(0f, 90f * Time.deltaTime, 0f);
+    }
+    void Iman_Mover_x()
+    {
+        transform.position = new Vector3(
+            transform.position.x - velocidad_transicion * Time.deltaTime,
+            transform.position.y,
+            transform.position.z
+        );
+    }
+    void Iman_Limite()
+    {
+        if (transform.position.x <= -6f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void limiteDeEfecto()

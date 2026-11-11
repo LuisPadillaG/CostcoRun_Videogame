@@ -41,13 +41,7 @@ public class moneda : MonoBehaviour
     {
         transform.Rotate(0f, 0f, 0f);
     }
-    void Moneda_Limite()
-    {
-        if (transform.position.x <= -6f)
-        {
-            Destroy(gameObject);
-        }
-    }
+  
     void Moneda_Mover()//--aljugador
     {
         if (recogida == false)
@@ -63,7 +57,6 @@ public class moneda : MonoBehaviour
             }
         }
     }
-
     void Moneda_Mover_x()
     {
         transform.position = new Vector3(
@@ -71,6 +64,13 @@ public class moneda : MonoBehaviour
             transform.position.y,
             transform.position.z
         );
+    }
+    void Moneda_Limite()
+    {
+        if (transform.position.x <= -6f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Moneda_Recoger()
