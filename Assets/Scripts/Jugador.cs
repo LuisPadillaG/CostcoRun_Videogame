@@ -21,6 +21,13 @@ public class Jugador : MonoBehaviour
     [SerializeField] float alturaNormal = 2f;
     [SerializeField] float alturaAgachado = 1f;
 
+    /*--------------ITEMS--------------------*/
+    [Header("Chancla")]
+    float fuerzaSalto_original;
+    [Header("Carrito")]
+    float velocidadAnimacion_original;
+
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -30,6 +37,8 @@ public class Jugador : MonoBehaviour
         animator = this.transform.GetChild(0).GetComponent<Animator>();
         tiempoAgachado = 0f;
         if (alturaNormal == 2f) alturaNormal = characterController.height;
+
+        ITEMS();
     }
 
     void Update()
@@ -86,4 +95,39 @@ public class Jugador : MonoBehaviour
         velocidad.y -= gravedad * Time.deltaTime; //------ GRAVEDAD
         characterController.Move(velocidad * Time.deltaTime);
     }
+
+
+    /*--------------ITEMS--------------------*/
+    void ITEMS()
+    {
+        fuerzaSalto_original = fuerzaSalto;//v "Chancla" v
+        velocidadAnimacion_original = animator.speed;//v "Carrito" v
+    }
+
+    //------- CHANCLA (De = chancla.cs)
+    public void AumentarSalto()
+    {
+        fuerzaSalto += 10f;
+    }
+    public void RecuperarSalto()
+    {
+        fuerzaSalto = fuerzaSalto_original;
+    }
+
+    //------- CARRITO (De = carrito.cs)
+    public void AumentarVelocidad()
+    {
+        animator.speed = 1.5f;
+    }
+
+    public void RecuperarVelocidad()
+    {
+        animator.speed = velocidadAnimacion_original;
+    }
+    
+    public bool EstaEnSuelo()
+    {
+        return is_grounded;
+    }
+    
 }

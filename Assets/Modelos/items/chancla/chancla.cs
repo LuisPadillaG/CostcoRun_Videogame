@@ -1,76 +1,74 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class chancla : MonoBehaviour
 {
-
     [Header("Player")]
-    CharacterController JugadorCharacterControler;
     GameObject Jugador;
-    PlayerInput JugadorplayerInput;
-    [SerializeField] float fuerzaSalto = 15f;
-    Vector3 velocidad;
+    Jugador JugadorScript;
 
+    [Header("Chancla")]
     GameObject canchla;
-  
+    GameObject chancla_objet;
 
+    [Header("Vida Chancla")]
+    float tiempo_efecto = 0f;
+    [SerializeField] float tiempo_limite_VidaCuandoLoRecoje = 26;
+
+    [Header("Audio")]
     AudioSource audiocanchla;
-    bool recogida = false;
 
+    bool recogida = false;
 
     void Start()
     {
-        Funciones();
-        Variables();
+        Jugador = GameObject.FindGameObjectWithTag("Player");
+        JugadorScript = Jugador.GetComponent<Jugador>();
 
+        canchla = GameObject.FindGameObjectWithTag("Chancla");
+        chancla_objet = transform.Find("chancla_objet").gameObject;//<-NO CAMBIAR 
     }
 
     void Update()
     {
-        Jugador = GameObject.FindGameObjectWithTag("Player");//jugador
-        JugadorCharacterControler = Jugador.GetComponent<CharacterController>();//character
-        JugadorplayerInput = Jugador.GetComponent<PlayerInput>();//playerinput
-        //Salta_personaje();
-        canchla = GameObject.FindGameObjectWithTag("Chancla").gameObject;
+        Chancla_Girar();
+        limiteDeEfecto();
     }
 
-    void Funciones()
-    {
-        
-        
-    }
-    void Variables()
-    {
+    // ---------------------- Funciones ---------------------- //
 
+    void Chancla_Girar()
+    {
+        transform.Rotate(0f, 90f * Time.deltaTime, 0f);
     }
-       
-    void Chancla_Recoger()//una sola vez
+    void Chancla_Recoger()
     {
         recogida = true;
+        JugadorScript.AumentarSalto();//lo manda a Jugador.cs
 
-        canchla.SetActive(false);
+        //canchla.SetActive(false);
+        chancla_objet.SetActive(false);
         //audiocanchla.Play();
+    }
 
-        Destroy(gameObject, 8f);
+    void limiteDeEfecto()
+    {
+        if (recogida == true)
+        {
+            tiempo_efecto += Time.deltaTime;
+
+            if (tiempo_efecto >= tiempo_limite_VidaCuandoLoRecoje)
+            {
+                JugadorScript.RecuperarSalto();//lo manda a Jugador.cs
+                Destroy(gameObject);
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && recogida == false)
         {
             Chancla_Recoger();
-            Salta_personaje();
-            //Destroy(gameObject, 9);
-        }
-    }
-    void Salta_personaje()
-    {
-        if (JugadorplayerInput.actions["Jump"].WasPressedThisFrame())
-        {
-            velocidad.y = fuerzaSalto;
         }
     }
 }
-/*
- Saltar rapido
- */

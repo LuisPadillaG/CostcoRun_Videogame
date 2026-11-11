@@ -1,94 +1,88 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class carrito : MonoBehaviour
 {
-
     [Header("Player")]
-    CharacterController JugadorCharacterControler;
-    GameObject Jugador;
-    PlayerInput JugadorplayerInput;
-    [SerializeField] float fuerzaSalto = 15f;
-    Vector3 velocidad;
-
-    [Header("Scena")]
-    float escenarapido;
-
+    Jugador JugadorScript;
 
     [Header("Carrito")]
     GameObject caarrito;
-    AudioSource audiocaarrito;
+    ParticleSystem Particle_corriendo;
     bool recogida = false;
 
 
+    [Header("Vida Carrito")]
+    float tiempo_efecto = 0f;
+    [SerializeField] float tiempo_limite_VidaCuandoLoRecoje = 26;
+
     void Start()
     {
-        Funciones();
-        Variables();
+        caarrito = transform.Find("carrito_objet").gameObject;//<-NO CAMBIAR 
+        //MovimientoContinuoScript = GetComponent<MovimientoContinuo>();
+
+
+
+        //Particle_corriendo = transform.Find("Particle_corriendo").GetComponent<ParticleSystem>();
+        //Particle_corriendo.SetActive(false);
 
     }
 
     void Update()
     {
-        Jugador = GameObject.FindGameObjectWithTag("Player");//jugador
-        JugadorCharacterControler = Jugador.GetComponent<CharacterController>();//character
-        JugadorplayerInput = Jugador.GetComponent<PlayerInput>();//playerinput
-
-
-
-        //Salta_personaje();
-        caarrito = GameObject.FindGameObjectWithTag("Chancla").gameObject;
-    }
-
-    void Funciones()
-    {
-
+        Carrito_Girar();
+        limiteDeEfecto();
 
     }
-    void Variables()
+    
+    // ---------------------- Funciones ---------------------- //
+    void Carrito_Girar()
     {
-
+        transform.Rotate(0f, 90f * Time.deltaTime, 0f);
     }
 
-    /* --------- FUNCIOES  ---------- */
-
-
-    void Carrito_Recoger()//una sola vez
+    void limiteDeEfecto()
     {
-        recogida = true;
-
-        caarrito.SetActive(false);
-        //audiocaarrito.Play();
-
-        Destroy(gameObject, 8f);
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        if (recogida == true)
         {
-            Carrito_Recoger();
-            Correr_personaje();
-            Scena_Rapido();
-            //Destroy(gameObject, 9);
+            tiempo_efecto += Time.deltaTime;
+
+            if (tiempo_efecto >= tiempo_limite_VidaCuandoLoRecoje)
+            {
+                JugadorScript.RecuperarVelocidad();//lo manda a Jugador.cs
+                MovimientoContinuo.RecuperarVelocidad();//lo manda a MovimientoContinuo.cs(static)
+                Particle_corriendo.Stop();
+                Particle_corriendo.gameObject.SetActive(false);
+                Destroy(gameObject);
+            }
         }
     }
 
-
-    void Correr_personaje()
+    void Carrito_Recoger()
     {
-        JugadorCharacterControler.Move(velocidad * Time.deltaTime);
+        recogida = true;
+
+        JugadorScript.AumentarVelocidad();//lo manda a Jugador.cs
+        MovimientoContinuo.AumentarVelocidad();//lo manda a MovimientoContinuo.cs(static)
+
+        caarrito.SetActive(false);
+
+        Particle_corriendo.gameObject.SetActive(true);
+        Particle_corriendo.Play();//particulas
+        
+
     }
-
-
-    void Scena_Rapido()
+    /**/
+    void OnTriggerEnter(Collider other)
     {
-       //escenarapido = MovimientoContinuo.
-    }
+        if (other.CompareTag("Player") && recogida == false)
+        {
+            JugadorScript = other.GetComponent<Jugador>();
+            Particle_corriendo = other.transform.Find("Particle_corriendo").GetComponent<ParticleSystem>();
 
+            if (JugadorScript != null)
+            {
+                Carrito_Recoger();
+            }
+        }
+    }
 }
-
-/*
- iR MAS RAPIDO
-ESCENARIO RAPIDO
- */

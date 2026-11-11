@@ -1,33 +1,24 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class Cotador_Moneda : MonoBehaviour
 {
     public TextMeshProUGUI Puntuaje;
-    private GameObject Monedas;
-
-
     public int cantidadMonedas = 0;
 
     void Start()
     {
-        Monedas = GameObject.FindGameObjectWithTag("Moneda");
     }
 
     void Update()
     {
-        AcumuladorMonedas();
+        Puntuaje.text = cantidadMonedas.ToString();
     }
 
-    void AcumuladorMonedas()
+    // ---------------------- Funciones ---------------------- //
+    public void AcumuladorMonedas()
     {
-        if (Monedas != null)
-        {
-          
-            Puntuaje.text = cantidadMonedas.ToString();
-            Puntuaje.color = Color.red;
-            cantidadMonedas ++;
-        }
+        cantidadMonedas += 3;
+        Puntuaje.text = cantidadMonedas.ToString();
     }
 }

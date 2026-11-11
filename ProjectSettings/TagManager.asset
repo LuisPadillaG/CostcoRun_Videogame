@@ -7,6 +7,7 @@ TagManager:
   - Moneda
   - Chancla
   - Carrito
+  - Iman
   layers:
   - Default
   - TransparentFX
