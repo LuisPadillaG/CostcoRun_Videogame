@@ -597,6 +597,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7762759746824381059}
     m_Modifications:
+    - target: {fileID: 1158959359782284020, guid: 4756428aa97a50544894a2eece60539b, type: 3}
+      propertyPath: m_Size.y
+      value: 14.968832
+      objectReference: {fileID: 0}
+    - target: {fileID: 1158959359782284020, guid: 4756428aa97a50544894a2eece60539b, type: 3}
+      propertyPath: m_Center.y
+      value: -6.9844174
+      objectReference: {fileID: 0}
     - target: {fileID: 5997521791967416581, guid: 4756428aa97a50544894a2eece60539b, type: 3}
       propertyPath: m_Name
       value: Pasteles
