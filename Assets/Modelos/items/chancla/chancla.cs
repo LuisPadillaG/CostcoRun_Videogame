@@ -92,3 +92,9 @@ public class chancla : MonoBehaviour
         }
     }
 }
+/*
+ -  Solo puede agarrar una vez(iman,chancla,carrito,multiplicador)
+ -  Multiplicador "2x"
+ -  Tramo mostrar (game over) - se acerca cuando esta en una posicion muy serca 
+ -  pause - mostrar su score
+ */

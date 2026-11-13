@@ -4,6 +4,7 @@ public class moneda : MonoBehaviour
 {
     AudioSource audioMoneda;
     bool recogida = false;
+    ParticleSystem Particle_destello;
 
     GameObject coin_lod;
     public float velocidad_transicion = 3;
@@ -26,6 +27,10 @@ public class moneda : MonoBehaviour
         audioMoneda = GetComponent<AudioSource>();
         coin_lod = transform.Find("coin_objet").gameObject;//<-NO CAMBIAR
         Contador = GameObject.Find("Canvas_UI").GetComponent<Cotador_Moneda>();//busca el contador//<-NO CAMBIAR
+        
+        Particle_destello = transform.GetChild(1).GetComponent<ParticleSystem>();
+        //Particle_destello = GetComponentInChildren<ParticleSystem>();
+
     }
 
     void Update()
@@ -33,6 +38,12 @@ public class moneda : MonoBehaviour
         Moneda_Girar();
         Moneda_Mover();
         Moneda_Limite();
+        /*
+        Monedas_Efectos();
+        
+        Particle_destello.gameObject.SetActive(true);
+        Particle_destello.Play();
+        */
     }
 
     // ---------------------- Funciones ---------------------- //
@@ -73,21 +84,44 @@ public class moneda : MonoBehaviour
         }
     }
 
+    
+    void Monedas_Efectos()//------- Particulas
+    {
+        if (recogida == false)
+        {
+            Particle_destello.Play();
+            //Particle_destello.transform.position = new Vector3(2, 0, 0);
+            Particle_destello.gameObject.SetActive(true);
+            if (!Particle_destello)//una vez
+            {
+                Destroy(Particle_destello);
+            }
+        }
+        else{
+            Particle_destello.Stop();
+            Particle_destello.gameObject.SetActive(false);
+        }
+    }
+
+
     void Moneda_Recoger()
     {
+        Monedas_Efectos();
         recogida = true;
         coin_lod.SetActive(false);
-        audioMoneda.Play();
+        audioMoneda.Play();    
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && recogida == false)
         {
+            //Particle_destello = other.transform.Find("Particle_moneda").GetComponent<ParticleSystem>();
             Moneda_Recoger();
             //Contador.AcumuladorMonedas(Conteo_monedas);//Contador_Modena.cs
             Contador.AcumuladorMonedas();//Contador_Modena.cs
             Destroy(gameObject, 3f);
+
         }
     }
 }

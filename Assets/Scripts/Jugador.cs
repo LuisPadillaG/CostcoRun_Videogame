@@ -22,6 +22,8 @@ public class Jugador : MonoBehaviour
     [SerializeField] float alturaAgachado = 1f;
 
     /*--------------ITEMS--------------------*/
+    int recogida_solo_una_chancla = 0;
+    int recogida_solo_una_carrito = 0;
     [Header("Chancla")]
     float fuerzaSalto_original;
     [Header("Carrito")]
@@ -94,6 +96,8 @@ public class Jugador : MonoBehaviour
         }
         velocidad.y -= gravedad * Time.deltaTime; //------ GRAVEDAD
         characterController.Move(velocidad * Time.deltaTime);
+
+        //Recogida_Solo_Una();
     }
 
 
@@ -103,10 +107,27 @@ public class Jugador : MonoBehaviour
         fuerzaSalto_original = fuerzaSalto;//v "Chancla" v
         velocidadAnimacion_original = animator.speed;//v "Carrito" v
     }
+    void Recogida_Solo_Una()
+    {
+        if (recogida_solo_una_chancla >= 1)
+        {
+            AumentarSalto();
+            RecuperarSalto();
+        }
 
+        if (recogida_solo_una_carrito >= 1)
+        {
+            AumentarVelocidad();
+            RecuperarVelocidad();
+        }
+
+    }
     //------- CHANCLA (De = chancla.cs)
+
+    
     public void AumentarSalto()
     {
+
         fuerzaSalto += 10f;
     }
     public void RecuperarSalto()
@@ -124,10 +145,10 @@ public class Jugador : MonoBehaviour
     {
         animator.speed = velocidadAnimacion_original;
     }
-    
+    /*
     public bool EstaEnSuelo()
     {
         return is_grounded;
     }
-    
+    */
 }

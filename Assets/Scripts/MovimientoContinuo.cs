@@ -9,6 +9,7 @@ public class MovimientoContinuo : MonoBehaviour
     [Header("Carrito")]
     static float multiplicadorVelocidad = 1f;
 
+
     void Update()
     {
         // Mueve el objeto hacia la izquierda de forma fluida y sincronizada
