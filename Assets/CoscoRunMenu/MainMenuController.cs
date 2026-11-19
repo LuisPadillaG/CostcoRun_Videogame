@@ -11,7 +11,7 @@ public class MainMenuController : MonoBehaviour
 {
     [Header("Escena del juego")]
     [Tooltip("Nombre EXACTO de la escena de tu juego, tal como aparece en File > Build Settings.")]
-    public string gameSceneName = "Game";
+    public string gameSceneName = "Controles";
 
     [Header("Paneles")]
     [Tooltip("El panel de opciones que se muestra/oculta al presionar Options.")]

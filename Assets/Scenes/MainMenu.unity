@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13da3203c59789d4db7d0e9dd9f83489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuController
-  gameSceneName: Game
+  gameSceneName: Controles
   optionsPanel: {fileID: 1287997622}
   startButton: {fileID: 1284820974}
   optionsButton: {fileID: 1291627004}
