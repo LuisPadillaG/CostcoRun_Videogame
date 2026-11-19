@@ -62,7 +62,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0321, y: 3.51, z: 0}
-  m_LocalScale: {x: 0.064869, y: 6.023352, z: 1}
+  m_LocalScale: {x: 0.064869, y: 7.76, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 825282062789955587}
@@ -159,11 +159,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CreadorDeModulo
   modulosDisponibles:
-  - {fileID: 7065797774193502245, guid: 07356e8d39ff1ed4ea2ce847ecddf822, type: 3}
-  - {fileID: 7065797774193502245, guid: 18aadef99052d31409412f0a9fd954eb, type: 3}
-  - {fileID: 7065797774193502245, guid: 4e9f5f68150d95c44a512675a7b3c851, type: 3}
+  - {fileID: 7065797774193502245, guid: 9a87ad33242621b4d8f25b4ddc16dd08, type: 3}
+  - {fileID: 7065797774193502245, guid: efa36a5dee699be44b3c479cef64956f, type: 3}
+  - {fileID: 7065797774193502245, guid: d9845cf8c19be7e49aa162f7f3f862b1, type: 3}
   - {fileID: 7065797774193502245, guid: 0095ca6955552f34c8f0e95fd9c2a2a6, type: 3}
-  - {fileID: 7065797774193502245, guid: 659cb3e1b8dbcd14494a66fc8546027c, type: 3}
+  - {fileID: 7065797774193502245, guid: c92004213045bbd4e8a3d4bd38ce02b4, type: 3}
+  - {fileID: 7065797774193502245, guid: 2b0e66fabda4a2a4c97d2b321bb2717c, type: 3}
+  - {fileID: 7065797774193502245, guid: 32b6c9ab38791074ca6bcdc4df6e4e03, type: 3}
+  - {fileID: 7065797774193502245, guid: 1dda9375e62ad834d84b11205bf70e25, type: 3}
+  - {fileID: 7065797774193502245, guid: e9a6afc3eec4bfe49a308e23c4e5e06c, type: 3}
+  - {fileID: 7065797774193502245, guid: 938f01214e242d742a92992b4162721f, type: 3}
 --- !u!54 &6508391937936105029
 Rigidbody:
   m_ObjectHideFlags: 0

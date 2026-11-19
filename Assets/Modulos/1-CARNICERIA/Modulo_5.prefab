@@ -1,5 +1,61 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &279710943896624671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6945270990128516267}
+  - component: {fileID: 9185433106572700527}
+  m_Layer: 0
+  m_Name: GameObject (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6945270990128516267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279710943896624671}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3594467396359044669}
+  - {fileID: 8841478875370294632}
+  - {fileID: 7124623886035704831}
+  m_Father: {fileID: 7762759746824381059}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &9185433106572700527
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279710943896624671}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.879362, y: 1, z: 4.2332416}
+  m_Center: {x: 18.450325, y: 0, z: 0.24974895}
 --- !u!1 &2289169439981094203
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,9 +310,7 @@ Transform:
   - {fileID: 7429395730661022841}
   - {fileID: 4280380965547949538}
   - {fileID: 8894019502578725084}
-  - {fileID: 3594467396359044669}
-  - {fileID: 8841478875370294632}
-  - {fileID: 7124623886035704831}
+  - {fileID: 6945270990128516267}
   - {fileID: 175543347262955456}
   - {fileID: 2062086207799969967}
   - {fileID: 3371376853640852683}
@@ -330,8 +384,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1339669008742211270, guid: c6a88bd01d3fac04c9f8b4b25e0d3e9f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2061890801607000245}
   m_SourcePrefab: {fileID: 100100000, guid: c6a88bd01d3fac04c9f8b4b25e0d3e9f, type: 3}
+--- !u!1 &1288377873789163365 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1339669008742211270, guid: c6a88bd01d3fac04c9f8b4b25e0d3e9f, type: 3}
+  m_PrefabInstance: {fileID: 249467111045384611}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2061890801607000245
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288377873789163365}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.84, y: 1.37, z: 4.56}
+  m_Center: {x: -3.71, y: 0.69, z: -0.25}
 --- !u!4 &7429395730661022841 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7236384143655458266, guid: c6a88bd01d3fac04c9f8b4b25e0d3e9f, type: 3}
@@ -410,7 +493,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 7762759746824381059}
+    m_TransformParent: {fileID: 6945270990128516267}
     m_Modifications:
     - target: {fileID: 3455242570831477677, guid: d0f4c34d7fe0b484a8e864cdbb36ed39, type: 3}
       propertyPath: m_LocalPosition.x
@@ -550,7 +633,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.745932, y: 1.3655238, z: 1.450562}
+  m_Size: {x: 2.745932, y: 1.3655238, z: 5.38}
   m_Center: {x: -3.618584, y: 0.67654, z: -1.0419269}
 --- !u!4 &8894019502578725084 stripped
 Transform:
@@ -654,11 +737,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 7762759746824381059}
+    m_TransformParent: {fileID: 6945270990128516267}
     m_Modifications:
     - target: {fileID: 3455242570831477677, guid: d0f4c34d7fe0b484a8e864cdbb36ed39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.845
+      value: 29.845001
       objectReference: {fileID: 0}
     - target: {fileID: 3455242570831477677, guid: d0f4c34d7fe0b484a8e864cdbb36ed39, type: 3}
       propertyPath: m_LocalPosition.y
@@ -716,11 +799,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 7762759746824381059}
+    m_TransformParent: {fileID: 6945270990128516267}
     m_Modifications:
     - target: {fileID: 3455242570831477677, guid: d0f4c34d7fe0b484a8e864cdbb36ed39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.06
+      value: 28.060001
       objectReference: {fileID: 0}
     - target: {fileID: 3455242570831477677, guid: d0f4c34d7fe0b484a8e864cdbb36ed39, type: 3}
       propertyPath: m_LocalPosition.y
@@ -881,6 +964,14 @@ PrefabInstance:
     - target: {fileID: 382289502542281230, guid: e147f2774d4815748a85feac0b618285, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3188979533209775136, guid: e147f2774d4815748a85feac0b618285, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 3188979533209775136, guid: e147f2774d4815748a85feac0b618285, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3886
       objectReference: {fileID: 0}
     - target: {fileID: 6530762191297690937, guid: e147f2774d4815748a85feac0b618285, type: 3}
       propertyPath: 'modulosDisponibles.Array.data[4]'

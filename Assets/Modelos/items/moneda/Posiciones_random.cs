@@ -5,14 +5,14 @@ public class Posiciones_random : MonoBehaviour
     public GameObject Object; // prefab
 
     //float aleatorio;
-    float aleatorio;
+    //float aleatorio;
     public int cantidad_objeto = 5; 
     int cantidad = 0;
     public float tiempo_espera = 1f;
     float temporizadorActual;
-    public float velocidad = 3;
+    //public float velocidad = 3;
 
-    float [] aleatorio_posicion;
+    //float [] aleatorio_posicion;
     
 
     void Start()
@@ -23,6 +23,7 @@ public class Posiciones_random : MonoBehaviour
     void Update()
     {
         GenerarAleatorio();
+
     }
 
     
@@ -47,7 +48,7 @@ public class Posiciones_random : MonoBehaviour
             if (temporizadorActual <= 0)
             {
                 //aleatorio
-                int[] Aleatorio_Determinados = new int[] { 0, 5, 8 };
+                int[] Aleatorio_Determinados = new int[] { 0, 4, 6 };
                 int Aleatorio_indice = Random.Range(0, Aleatorio_Determinados.Length);
                 int aleatorio = Aleatorio_Determinados[Aleatorio_indice];//aleatorio = Random.Range(-11f, 11f); // Rango aleatorio  
 
@@ -56,22 +57,19 @@ public class Posiciones_random : MonoBehaviour
                 //Instantiate(Object, new Vector3(0, aleatorio, 0), Quaternion.identity);
                 GameObject objet_copia = Instantiate(Object, new Vector3(this.transform.position.x, aleatorio, 0), Quaternion.identity);
 
+                /*
                 //Se mueve
-                Vector3 objet_copia_mover;
-                objet_copia_mover = objet_copia.transform.position;
+                Vector3 objet_copia_mover = objet_copia.transform.position;
                 objet_copia_mover.z -= velocidad * Time.deltaTime;
                 objet_copia.transform.position = objet_copia_mover;
-
-                /*
-                if(objet_copia.transform.position.x  >= -6)
-                {
-                    Destroy(objet_copia);
-                }
+                //objet_copia.transform.rotation = Quaternion.identity;
                 */
+
                 cantidad++;
                 temporizadorActual = tiempo_espera; // Reiniciamos temporizador
             }
         }
+
     }
 
     /*
@@ -84,12 +82,16 @@ public class Posiciones_random : MonoBehaviour
 
     }
     */
-
-
-    void PosicoiLimites()
+    /*
+    void Objeto_Mover()
     {
-
+        transform.position = new Vector3(
+            transform.position.x,
+            transform.position.y,
+            transform.position.z - velocidad * Time.deltaTime
+        );
     }
+    */
 
 
 

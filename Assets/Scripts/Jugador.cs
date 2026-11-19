@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.Networking;
+using System.Collections;
 public class Jugador : MonoBehaviour
 {
     CharacterController characterController;
     PlayerInput playerInput;
     Animator animator;
-
+    private string baseUrl = "https://apidecosco.onrender.com";
+    float contador;
     [Header("Configuración de Salto y Gravedad")]
     [Range(10f, 50f)]
     [SerializeField] float fuerzaSalto = 15f;
@@ -21,8 +23,18 @@ public class Jugador : MonoBehaviour
     [SerializeField] float alturaNormal = 2f;
     [SerializeField] float alturaAgachado = 1f;
 
+    /*--------------ITEMS--------------------*/
+    int recogida_solo_una_chancla = 0;
+    int recogida_solo_una_carrito = 0;
+    [Header("Chancla")]
+    float fuerzaSalto_original;
+    [Header("Carrito")]
+    float velocidadAnimacion_original;
+
+
     void Start()
     {
+        contador = 0;
         characterController = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
         posicionX_inicial = this.transform.position.x;
@@ -30,10 +42,18 @@ public class Jugador : MonoBehaviour
         animator = this.transform.GetChild(0).GetComponent<Animator>();
         tiempoAgachado = 0f;
         if (alturaNormal == 2f) alturaNormal = characterController.height;
+
+        ITEMS();
     }
 
     void Update()
     {
+        contador += Time.deltaTime;
+        if (contador > 0.1f)
+        {
+            contador = 0;
+            StartCoroutine(RevisarIsJump());
+        }
         //normalizar variables 
         animator.SetInteger("Estado", 0);
         cooldownRecuperacion -= Time.deltaTime;
@@ -85,5 +105,79 @@ public class Jugador : MonoBehaviour
         }
         velocidad.y -= gravedad * Time.deltaTime; //------ GRAVEDAD
         characterController.Move(velocidad * Time.deltaTime);
+
+        //Recogida_Solo_Una();
     }
+
+
+    /*--------------ITEMS--------------------*/
+    void ITEMS()
+    {
+        fuerzaSalto_original = fuerzaSalto;//v "Chancla" v
+        velocidadAnimacion_original = animator.speed;//v "Carrito" v
+    }
+    void Recogida_Solo_Una()
+    {
+        if (recogida_solo_una_chancla >= 1)
+        {
+            AumentarSalto();
+            RecuperarSalto();
+        }
+
+        if (recogida_solo_una_carrito >= 1)
+        {
+            AumentarVelocidad();
+            RecuperarVelocidad();
+        }
+
+    }
+    //------- CHANCLA (De = chancla.cs)
+
+    
+    public void AumentarSalto()
+    {
+
+        fuerzaSalto += 10f;
+    }
+    public void RecuperarSalto()
+    {
+        fuerzaSalto = fuerzaSalto_original;
+    }
+
+    //------- CARRITO (De = carrito.cs)
+    public void AumentarVelocidad()
+    {
+        animator.speed = 1.5f;
+    }
+
+    public void RecuperarVelocidad()
+    {
+        animator.speed = velocidadAnimacion_original;
+    }
+    IEnumerator RevisarIsJump()
+    {
+        UnityWebRequest webrequest = UnityWebRequest.Get(baseUrl + "/is_jump");
+        yield return webrequest.SendWebRequest();
+
+        if (webrequest.result == UnityWebRequest.Result.Success)
+        {
+            string respuesta = webrequest.downloadHandler.text.Trim().ToLower();
+            bool salto = (respuesta == "true");
+
+            if (salto)
+            {
+                if (is_grounded) // ------ SALTO
+                {
+                    velocidad.y = fuerzaSalto;
+                    animator.SetInteger("Estado", 1);
+                }
+            }
+        }
+    }
+    /*
+    public bool EstaEnSuelo()
+    {
+        return is_grounded;
+    }
+    */
 }

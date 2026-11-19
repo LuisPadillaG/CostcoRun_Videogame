@@ -51,8 +51,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.235253, y: 1.3508375, z: 1.4544425}
-  m_Center: {x: -1.9960291, y: -1.8287483, z: -0.66105473}
+  m_Size: {x: 4.235253, y: 1.3508375, z: 4.97}
+  m_Center: {x: -1.9960291, y: -1.8287483, z: -0.04}
 --- !u!1 &1621846696408439466
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,8 +104,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.21661, y: 1.3508375, z: 1.4544425}
-  m_Center: {x: -8.156534, y: -1.8287483, z: -0.66105473}
+  m_Size: {x: 4.21661, y: 1.3508375, z: 4.97}
+  m_Center: {x: -8.156534, y: -1.8287483, z: -0.04}
 --- !u!1 &2289169439981094203
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,8 +270,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.219681, y: 1.3508375, z: 1.4544425}
-  m_Center: {x: 9.254463, y: -1.8287483, z: -0.66105473}
+  m_Size: {x: 4.219681, y: 1.3508375, z: 4.97}
+  m_Center: {x: 9.254463, y: -1.8287483, z: -0.04}
 --- !u!1 &5313386386967470147
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,8 +323,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.20411, y: 1.354126, z: 1.4544425}
-  m_Center: {x: 3.656468, y: -0.4723742, z: -0.66105473}
+  m_Size: {x: 4.20411, y: 1.354126, z: 4.97}
+  m_Center: {x: 3.656468, y: -0.4723742, z: -0.04}
 --- !u!1 &6520334591120339738
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,8 +376,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.20411, y: 1.3508375, z: 1.4544425}
-  m_Center: {x: 3.656468, y: -1.8287483, z: -0.66105473}
+  m_Size: {x: 4.20411, y: 1.3508375, z: 4.97}
+  m_Center: {x: 3.656468, y: -1.8287483, z: -0.04}
 --- !u!1 &7065797774193502245
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,6 +672,14 @@ PrefabInstance:
     - target: {fileID: 382289502542281230, guid: e147f2774d4815748a85feac0b618285, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3188979533209775136, guid: e147f2774d4815748a85feac0b618285, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 3188979533209775136, guid: e147f2774d4815748a85feac0b618285, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3886
       objectReference: {fileID: 0}
     - target: {fileID: 6530762191297690937, guid: e147f2774d4815748a85feac0b618285, type: 3}
       propertyPath: 'modulosDisponibles.Array.data[8]'

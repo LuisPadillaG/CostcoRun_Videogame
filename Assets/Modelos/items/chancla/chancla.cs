@@ -1,76 +1,107 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class chancla : MonoBehaviour
 {
-
-    [Header ("Player")]
+    bool OneMoreTIme = false;
+    float TimepoOneMoreTIme = 0;
+    [Header("Player")]
     GameObject Jugador;
-    PlayerInput playerInput;
-    [SerializeField] float fuerzaSalto = 15f;
-    Vector3 velocidad;
+    Jugador JugadorScript;
 
+    [Header("Chancla")]
+    GameObject canchla;
+    GameObject chancla_objet;
+
+    [Header("Vida Chancla")]
+    float tiempo_efecto = 0f;
+    [SerializeField] float tiempo_limite_VidaCuandoLoRecoje = 26;
+
+    [Header("Audio")]
+    AudioSource audiocanchla;
+
+
+    bool recogida = false;
+    public float velocidad_transicion = 3;
 
     void Start()
     {
-        Funciones();
-        Variables();
+        Jugador = GameObject.FindGameObjectWithTag("Player");
+        JugadorScript = Jugador.GetComponent<Jugador>();
 
+        canchla = GameObject.FindGameObjectWithTag("Chancla");
+        chancla_objet = transform.Find("chancla_objet").gameObject;//<-NO CAMBIAR 
     }
 
     void Update()
     {
-        Jugador = GameObject.FindGameObjectWithTag("Player");
-        Salta_personaje();
-    }
-
-    void Funciones()
-    {
-        //coin_lod = transform.Find("coin_lod").gameObject;
-    }
-    void Variables()
-    {
-
-    }
-
-
-
-
-    void Salta_personaje()
-    {
-        
-        if (playerInput.actions["Jump"].WasPressedThisFrame()) 
+        if (!OneMoreTIme || TimepoOneMoreTIme >= tiempo_limite_VidaCuandoLoRecoje)//Solo se puede recoger una sola vez
         {
-            velocidad.y = fuerzaSalto;
+            Chancla_Girar();
+            limiteDeEfecto();
+            Chancla_Mover_x();
+            Chancla_Limite();
         }
-        //characterController.Move(velocidad * Time.deltaTime);
+            
     }
 
-    /*
+    // ---------------------- Funciones ---------------------- //
+
+    void Chancla_Girar()
+    {
+        transform.Rotate(0f, 90f * Time.deltaTime, 0f);
+    }
     void Chancla_Recoger()
     {
-        recogida = true;//una sola vez
+        recogida = true;
+        JugadorScript.AumentarSalto();//lo manda a Jugador.cs
 
-        coin_lod.SetActive(false);
-        audioMoneda.Play();
+        //canchla.SetActive(false);
+        chancla_objet.SetActive(false);
+        //audiocanchla.Play();
+    }
 
-        Destroy(gameObject, 8f);
+    void Chancla_Mover_x()
+    {
+        transform.position = new Vector3(
+            transform.position.x - velocidad_transicion * Time.deltaTime,
+            transform.position.y,
+            transform.position.z
+        );
+    }
+    void Chancla_Limite()
+    {
+        if (transform.position.x <= -6f)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void limiteDeEfecto()
+    {
+        if (recogida == true)
+        {
+            tiempo_efecto += Time.deltaTime;
+
+            if (tiempo_efecto >= tiempo_limite_VidaCuandoLoRecoje)
+            {
+                JugadorScript.RecuperarSalto();//lo manda a Jugador.cs
+                Destroy(gameObject);
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !recogida)
+        if (other.CompareTag("Player") && recogida == false)
         {
-            Moneda_Recoger();
+            Chancla_Recoger();
         }
     }
-
-
-    */
-
-
-  
-
-
-
 }
+/*
+ -  Solo puede agarrar una vez(iman,chancla,carrito,multiplicador)
+ -  Multiplicador "2x"
+ -  Tramo mostrar (game over) - se acerca cuando esta en una posicion muy serca 
+ -  pause - mostrar su score
+ -  Efecto (solo una vez)   
+ */
