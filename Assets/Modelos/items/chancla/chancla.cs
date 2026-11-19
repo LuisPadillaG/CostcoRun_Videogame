@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class chancla : MonoBehaviour
 {
+    bool OneMoreTIme = false;
+    float TimepoOneMoreTIme = 0;
     [Header("Player")]
     GameObject Jugador;
     Jugador JugadorScript;
@@ -32,10 +34,14 @@ public class chancla : MonoBehaviour
 
     void Update()
     {
-        Chancla_Girar();
-        limiteDeEfecto();
-        Chancla_Mover_x();
-        Chancla_Limite();
+        if (!OneMoreTIme || TimepoOneMoreTIme >= tiempo_limite_VidaCuandoLoRecoje)//Solo se puede recoger una sola vez
+        {
+            Chancla_Girar();
+            limiteDeEfecto();
+            Chancla_Mover_x();
+            Chancla_Limite();
+        }
+            
     }
 
     // ---------------------- Funciones ---------------------- //
@@ -97,4 +103,5 @@ public class chancla : MonoBehaviour
  -  Multiplicador "2x"
  -  Tramo mostrar (game over) - se acerca cuando esta en una posicion muy serca 
  -  pause - mostrar su score
+ -  Efecto (solo una vez)   
  */

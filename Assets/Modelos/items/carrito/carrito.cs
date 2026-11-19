@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class carrito : MonoBehaviour
 {
+
     [Header("Player")]
     Jugador JugadorScript;
 
@@ -17,6 +18,7 @@ public class carrito : MonoBehaviour
 
     public float velocidad_transicion = 3;
 
+
     void Start()
     {
         caarrito = transform.Find("carrito_objet").gameObject;//<-NO CAMBIAR 
@@ -31,11 +33,12 @@ public class carrito : MonoBehaviour
 
     void Update()
     {
-        Carrito_Girar();
-        limiteDeEfecto();
-        Carrito_Mover_x();
-        Carrito_Limite();
-
+       
+            Carrito_Girar();
+            limiteDeEfecto();
+            Carrito_Mover_x();
+            Carrito_Limite();
+      
     }
     
     // ---------------------- Funciones ---------------------- //

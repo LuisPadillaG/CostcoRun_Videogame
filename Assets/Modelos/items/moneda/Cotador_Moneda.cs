@@ -18,7 +18,7 @@ public class Cotador_Moneda : MonoBehaviour
     // ---------------------- Funciones ---------------------- //
     public void AcumuladorMonedas()
     {
-        cantidadMonedas += 3;
+        cantidadMonedas += 10;
         Puntuaje.text = cantidadMonedas.ToString();
     }
 }

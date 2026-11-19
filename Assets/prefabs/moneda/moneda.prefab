@@ -290,7 +290,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2558916597243207054, guid: d66a946b463000243b79e0a0c4a63ee5, type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2558916597243207054, guid: d66a946b463000243b79e0a0c4a63ee5, type: 3}
       propertyPath: InitialModule.maxNumParticles

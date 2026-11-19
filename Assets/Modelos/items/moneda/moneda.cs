@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class moneda : MonoBehaviour
 {
+
     AudioSource audioMoneda;
     bool recogida = false;
     ParticleSystem Particle_destello;
@@ -12,10 +13,12 @@ public class moneda : MonoBehaviour
     
     [Header("Contador_Moneda")]
     Cotador_Moneda Contador;
+
     /*
     //Cotador_Moneda Contador;//Cotador_Moneda.cs
     int Conteo_monedas = 3;
     */
+
     [Header("Iman")]
     public static bool imanActivo = false;
     public static Transform JugadorImanRecogido;
@@ -52,7 +55,7 @@ public class moneda : MonoBehaviour
     {
         transform.Rotate(0f, 0f, 0f);
     }
-  
+
     void Moneda_Mover()//--aljugador
     {
         if (recogida == false)
@@ -68,6 +71,7 @@ public class moneda : MonoBehaviour
             }
         }
     }
+
     void Moneda_Mover_x()
     {
         transform.position = new Vector3(
@@ -76,6 +80,7 @@ public class moneda : MonoBehaviour
             transform.position.z
         );
     }
+
     void Moneda_Limite()
     {
         if (transform.position.x <= -6f)
@@ -84,7 +89,7 @@ public class moneda : MonoBehaviour
         }
     }
 
-    
+
     void Monedas_Efectos()//------- Particulas
     {
         if (recogida == false)
@@ -124,6 +129,7 @@ public class moneda : MonoBehaviour
 
         }
     }
+
 }
 
 
