@@ -9,6 +9,7 @@ public class Cotador_Moneda : MonoBehaviour
     public TextMeshProUGUI Puntuaje;
     public int cantidadMonedas = 0;
     private string baseUrl = "https://apidecosco.onrender.com";
+    public static int monedasGuardadas = 0;
     void Start()
     {
     }
@@ -22,6 +23,7 @@ public class Cotador_Moneda : MonoBehaviour
     public void AcumuladorMonedas()
     {
         cantidadMonedas += 10;
+        monedasGuardadas = cantidadMonedas;
         Puntuaje.text = cantidadMonedas.ToString();
         EnviarMonedas();
     }
