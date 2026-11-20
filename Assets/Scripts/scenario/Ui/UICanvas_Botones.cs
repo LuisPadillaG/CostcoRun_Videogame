@@ -9,17 +9,26 @@ public class UICanvas_Botones : MonoBehaviour
 
     private PlayerInput playerInput;
     private bool juegoPausado;
+    bool interfaz_activa;
+    [Header("CanvasPausa")]
+    GameObject Canvas_Pausa;
+
 
     void Start()
     {
         ObtenerComponentes();
         PrepararValoresIniciales();
+        Canvas_Pausa = GameObject.Find("Image");
+
     }
 
     void Update()
     {
        /*--- boton "p"---*/
-            PreMenu();
+       PreMenu();
+
+       one_interfaz_canvas();
+
     }
 
     void ObtenerComponentes() // -- COMPONENTES
@@ -52,6 +61,16 @@ public class UICanvas_Botones : MonoBehaviour
         }
     }
 
+    void one_interfaz_canvas()
+    {
+        if (juegoPausado == false)
+        {
+            PreMenu();
+        }
+    }
+
+
+
     /* -----------  -ONCLICK-  ----------- */
     public void menu()//-- cambia al menu (detiene el juego)
     {
@@ -79,7 +98,9 @@ public class UICanvas_Botones : MonoBehaviour
 
     public void Resumuir()
     {
-       
+        juegoPausado = false;
+        Canvas_Pausa.SetActive(false);//quita - Canvas_Pausa
+        Time.timeScale = 1f;
     }
 
     public void Salir_Inicio()//-- Sale del juego al inicio

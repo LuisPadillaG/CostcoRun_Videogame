@@ -8,6 +8,7 @@ public class Iman : MonoBehaviour
     [Header("Iman")]
     GameObject iman_objet;
     bool recogida = false;
+    static Iman ImanActivo;
 
     [Header("Configuracion del Iman")]
     [SerializeField] float radioImanAtraccion = 5f;
@@ -17,23 +18,34 @@ public class Iman : MonoBehaviour
     float tiempo_efecto = 0f;
     [SerializeField] float tiempo_limite = 26f;
 
+    [Header("Canvas")]
+    GameObject Iman_Canvas;
+
     public float velocidad_transicion = 3;
     void Start()
     {
         iman_objet = transform.Find("iman_objet").gameObject;//<-NO CAMBIAR
+        Iman_Canvas = GameObject.Find("Canvas").transform.Find("Iman").gameObject;//canvas
     }
 
     void Update()
     {
-        limiteDeEfecto();
-        Iman_Mover_x();
-        Iman_Limite();
-        Iman_Girar();
+        if (ImanActivo == this)//aumenta vida items
+        {
+            limiteDeEfecto();
+        }
+
+        if (recogida == false)
+        {
+            Iman_Mover_x();
+            Iman_Limite();
+            Iman_Girar();
+        }
 
     }
 
     // ---------------------- Funciones ---------------------- //
-
+    /*
     void Iman_Recoger()
     {
         recogida = true;
@@ -41,10 +53,33 @@ public class Iman : MonoBehaviour
         moneda.JugadorImanRecogido = Jugador;
         moneda.radioImanAtraccion = radioImanAtraccion;
         moneda.velocidadIman = velocidadIman;
-        moneda.imanActivo = true;//***/
+        moneda.imanActivo = true;
 
         iman_objet.SetActive(false);
+    }*/
+    void Iman_Recoger()
+    {
+        recogida = true;
+        iman_objet.SetActive(false);
+
+        if (ImanActivo == null)
+        {
+            ImanActivo = this;
+            Iman_Canvas.SetActive(true);//Canvas
+
+            moneda.JugadorImanRecogido = Jugador;
+            moneda.radioImanAtraccion = radioImanAtraccion;
+            moneda.velocidadIman = velocidadIman;
+            moneda.imanActivo = true;
+        }
+        else
+        {
+            ImanActivo.tiempo_limite += tiempo_limite;
+            Destroy(gameObject);
+        }
     }
+
+
     void Iman_Girar()
     {
         transform.Rotate(0f, 90f * Time.deltaTime, 0f);
@@ -65,6 +100,7 @@ public class Iman : MonoBehaviour
         }
     }
 
+    /*
     void limiteDeEfecto()
     {
         if (recogida == true)
@@ -79,10 +115,27 @@ public class Iman : MonoBehaviour
             }
         }
     }
+    */
+    void limiteDeEfecto()
+    {
+        if (recogida == true)
+        {
+            tiempo_efecto += Time.deltaTime;
 
+            if (tiempo_efecto >= tiempo_limite)//cuando se acaba la vida itmes
+            {
+                moneda.imanActivo = false;
+                moneda.JugadorImanRecogido = null;
+                Iman_Canvas.SetActive(false);//Canvas
+                ImanActivo = null;
+
+                Destroy(gameObject);
+            }
+        }
+    }
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && recogida == false)//ambas son sí
+        if (other.CompareTag("Player") && recogida == false)//ambas son sí //if (other.CompareTag("Player") && recogida == false && moneda.imanActivo == false) //
         {
             Jugador = other.transform;//se comvierte jugador(objeto)
             Iman_Recoger();

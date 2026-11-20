@@ -48,7 +48,7 @@ public class Posiciones_random : MonoBehaviour
             if (temporizadorActual <= 0)
             {
                 //aleatorio
-                int[] Aleatorio_Determinados = new int[] { 0, 4, 6 };
+                int[] Aleatorio_Determinados = new int[] { 0, 3, 5 };//new
                 int Aleatorio_indice = Random.Range(0, Aleatorio_Determinados.Length);
                 int aleatorio = Aleatorio_Determinados[Aleatorio_indice];//aleatorio = Random.Range(-11f, 11f); // Rango aleatorio  
 

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class chancla : MonoBehaviour
 {
-    bool OneMoreTIme = false;
-    float TimepoOneMoreTIme = 0;
+    //bool OneMoreTIme = false;
+    //float TimepoOneMoreTIme = 0;
     [Header("Player")]
     GameObject Jugador;
     Jugador JugadorScript;
@@ -16,11 +16,16 @@ public class chancla : MonoBehaviour
     float tiempo_efecto = 0f;
     [SerializeField] float tiempo_limite_VidaCuandoLoRecoje = 26;
 
+    [Header("Canvas")]
+    GameObject Chancla_Canvas;
+
     [Header("Audio")]
     AudioSource audiocanchla;
 
 
     bool recogida = false;
+    //static bool chanclaActiva = false;//verifica que solo ahiga una
+    static chancla ChanclaActiva;
     public float velocidad_transicion = 3;
 
     void Start()
@@ -30,18 +35,22 @@ public class chancla : MonoBehaviour
 
         canchla = GameObject.FindGameObjectWithTag("Chancla");
         chancla_objet = transform.Find("chancla_objet").gameObject;//<-NO CAMBIAR 
+        Chancla_Canvas = GameObject.Find("Canvas").transform.Find("Chancla").gameObject;//canvas
     }
 
     void Update()
     {
-        if (!OneMoreTIme || TimepoOneMoreTIme >= tiempo_limite_VidaCuandoLoRecoje)//Solo se puede recoger una sola vez
+        if (ChanclaActiva == this)//aumenta vida items
+        {
+            limiteDeEfecto();
+        }
+
+        if (recogida == false)
         {
             Chancla_Girar();
-            limiteDeEfecto();
             Chancla_Mover_x();
             Chancla_Limite();
         }
-            
     }
 
     // ---------------------- Funciones ---------------------- //
@@ -53,10 +62,27 @@ public class chancla : MonoBehaviour
     void Chancla_Recoger()
     {
         recogida = true;
+        chancla_objet.SetActive(false);
+
+        if (ChanclaActiva == null)
+        {
+            ChanclaActiva = this;
+            Chancla_Canvas.SetActive(true);//canvas
+
+            JugadorScript.AumentarSalto();//lo manda a Jugador.cs
+        }
+        else
+        {
+            ChanclaActiva.tiempo_limite_VidaCuandoLoRecoje += tiempo_limite_VidaCuandoLoRecoje;//aumenta vida item
+            Destroy(gameObject);
+        }
+        /*
+        chanclaActiva = true;
         JugadorScript.AumentarSalto();//lo manda a Jugador.cs
+        */
 
         //canchla.SetActive(false);
-        chancla_objet.SetActive(false);
+        //chancla_objet.SetActive(false);
         //audiocanchla.Play();
     }
 
@@ -85,6 +111,8 @@ public class chancla : MonoBehaviour
             if (tiempo_efecto >= tiempo_limite_VidaCuandoLoRecoje)
             {
                 JugadorScript.RecuperarSalto();//lo manda a Jugador.cs
+                ChanclaActiva = null;//null static
+                Chancla_Canvas.SetActive(false);
                 Destroy(gameObject);
             }
         }
@@ -92,16 +120,12 @@ public class chancla : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && recogida == false)
+        if (other.CompareTag("Player") && recogida == false)//if (other.CompareTag("Player") && recogida == false && chanclaActiva == false)
         {
             Chancla_Recoger();
         }
     }
 }
 /*
- -  Solo puede agarrar una vez(iman,chancla,carrito,multiplicador)
- -  Multiplicador "2x"
- -  Tramo mostrar (game over) - se acerca cuando esta en una posicion muy serca 
- -  pause - mostrar su score
- -  Efecto (solo una vez)   
+ 
  */
