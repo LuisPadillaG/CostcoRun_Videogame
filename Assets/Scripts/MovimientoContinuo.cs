@@ -3,27 +3,43 @@ using UnityEngine;
 public class MovimientoContinuo : MonoBehaviour
 {
     [Header("Configuración de Movimiento")]
-    [SerializeField] float velocidadMov = 5f;
+    [SerializeField] float velocidadInicial = 5f;
+    [SerializeField] float incrementoPorBloque = 0.15f; // Cuánto sube cada vez que sale un mapa nuevo
+    [SerializeField] float velocidadMaxima = 15f;       // Tope para que sea jugable
 
     /*--- ITEMS ---*/
     [Header("Carrito")]
     static float multiplicadorVelocidad = 1f;
-    static float velocidadBase = 5f;
+    static float velocidadBase = 0f;
 
-    // Propiedad pública para que otros scripts (como moneda) lean la velocidad exacta
     public static float VelocidadActual => velocidadBase * multiplicadorVelocidad;
 
     void Awake()
     {
-        velocidadBase = velocidadMov;
+        // Si es el primer bloque de la partida, arrancamos con la velocidad inicial
+        if (velocidadBase <= 0f)
+        {
+            velocidadBase = velocidadInicial;
+        }
+        else
+        {
+            // Cada nuevo bloque instanciado sube un poco la velocidad global, sin pasar el máximo
+            velocidadBase = Mathf.Min(velocidadBase + incrementoPorBloque, velocidadMaxima);
+        }
     }
 
     void Update()
     {
-        // Mueve el objeto hacia la izquierda de forma fluida y sincronizada
         Vector3 posicion = transform.position;
         posicion.x -= VelocidadActual * Time.deltaTime;
         transform.position = posicion;
+    }
+
+    // IMPORTANTE: Llama a este método cuando el jugador pierda o reinicies la escena
+    public static void ReiniciarVelocidad()
+    {
+        velocidadBase = 0f;
+        multiplicadorVelocidad = 1f;
     }
 
     /*--- ITEMS ---*/

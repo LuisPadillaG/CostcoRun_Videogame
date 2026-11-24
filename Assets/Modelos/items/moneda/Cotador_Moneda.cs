@@ -6,25 +6,29 @@ using System.Collections;
 
 public class Cotador_Moneda : MonoBehaviour
 {
-    public TextMeshProUGUI Puntuaje;
+
+    public TextMeshProUGUI[] Textos;//public TextMeshProUGUI Puntuaje;
     public int cantidadMonedas = 0;
     private string baseUrl = "https://apidecosco.onrender.com";
     public static int monedasGuardadas = 0;
     void Start()
     {
     }
-
     void Update()
     {
-        Puntuaje.text = cantidadMonedas.ToString();
+        //Puntuaje.text = cantidadMonedas.ToString();
+        for (int i = 0; i < Textos.Length; i++)//todo textos
+        {
+            Textos[i].text = cantidadMonedas.ToString();
+        }
     }
-
+     
     // ---------------------- Funciones ---------------------- //
     public void AcumuladorMonedas()
     {
-        cantidadMonedas += 10;
+        cantidadMonedas += x2.MultiplicarMonedas(10); //cantidadMonedas += 10;
         monedasGuardadas = cantidadMonedas;
-        Puntuaje.text = cantidadMonedas.ToString();
+        //Puntuaje.text = cantidadMonedas.ToString();
         EnviarMonedas();
     }
     public void EnviarMonedas()
