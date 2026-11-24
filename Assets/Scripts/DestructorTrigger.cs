@@ -4,14 +4,24 @@ public class DestructorTrigger : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        // Destruye el objeto completo (si el collider está en un hijo, destruye al padre raíz)
-        if (other.attachedRigidbody != null)
+        DestruirObjetivo(other);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        DestruirObjetivo(collision.collider);
+    }
+
+    private void DestruirObjetivo(Collider col)
+    {
+        // Destruye el objeto raíz si tiene Rigidbody, o el objeto directo si no lo tiene
+        if (col.attachedRigidbody != null)
         {
-            Destroy(other.attachedRigidbody.gameObject);
+            Destroy(col.attachedRigidbody.gameObject);
         }
         else
         {
-            Destroy(other.gameObject);
+            Destroy(col.gameObject);
         }
     }
 }
