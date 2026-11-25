@@ -169,7 +169,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5174c89314106a43b448826de36e35f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimientoContinuo
-  velocidadMov: 5
+  velocidadInicial: 5
+  incrementoPorBloque: 0.15
+  velocidadMaxima: 15
 --- !u!1001 &817014357389172717
 PrefabInstance:
   m_ObjectHideFlags: 0

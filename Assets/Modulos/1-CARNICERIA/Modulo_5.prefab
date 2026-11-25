@@ -328,7 +328,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5174c89314106a43b448826de36e35f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimientoContinuo
-  velocidadMov: 5
+  velocidadInicial: 5
+  incrementoPorBloque: 0.15
+  velocidadMaxima: 15
 --- !u!1001 &249467111045384611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -927,7 +929,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 382289502542281230, guid: e147f2774d4815748a85feac0b618285, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03210001
+      value: 0.0321
       objectReference: {fileID: 0}
     - target: {fileID: 382289502542281230, guid: e147f2774d4815748a85feac0b618285, type: 3}
       propertyPath: m_LocalPosition.y

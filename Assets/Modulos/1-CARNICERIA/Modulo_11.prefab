@@ -334,7 +334,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5174c89314106a43b448826de36e35f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimientoContinuo
-  velocidadMov: 5
+  velocidadInicial: 5
+  incrementoPorBloque: 0.15
+  velocidadMaxima: 15
 --- !u!1001 &1387104918567618431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -964,8 +966,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 3875571827948160683}
     m_Modifications:
     - target: {fileID: 382289502542281230, guid: e147f2774d4815748a85feac0b618285, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 7.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 382289502542281230, guid: e147f2774d4815748a85feac0b618285, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03210001
+      value: 0.0321
       objectReference: {fileID: 0}
     - target: {fileID: 382289502542281230, guid: e147f2774d4815748a85feac0b618285, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1003,6 +1009,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3188979533209775136, guid: e147f2774d4815748a85feac0b618285, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 3188979533209775136, guid: e147f2774d4815748a85feac0b618285, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3886
+      objectReference: {fileID: 0}
+    - target: {fileID: 6530762191297690937, guid: e147f2774d4815748a85feac0b618285, type: 3}
+      propertyPath: 'modulosDisponibles.Array.data[0]'
+      value: 
+      objectReference: {fileID: 7065797774193502245}
     - target: {fileID: 7689486524033600925, guid: e147f2774d4815748a85feac0b618285, type: 3}
       propertyPath: m_Name
       value: Generador de papus (1) Variant

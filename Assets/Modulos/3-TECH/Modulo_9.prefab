@@ -163,7 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5174c89314106a43b448826de36e35f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovimientoContinuo
-  velocidadMov: 5
+  velocidadInicial: 5
+  incrementoPorBloque: 0.15
+  velocidadMaxima: 15
 --- !u!1001 &188621273052394317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -639,6 +641,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3875571827948160683}
     m_Modifications:
+    - target: {fileID: 1886083541628833042, guid: d0c5f03c45332e042b33f83ddbea83e8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886083541628833042, guid: d0c5f03c45332e042b33f83ddbea83e8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3886
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684818913418173244, guid: d0c5f03c45332e042b33f83ddbea83e8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 7.76
+      objectReference: {fileID: 0}
     - target: {fileID: 3684818913418173244, guid: d0c5f03c45332e042b33f83ddbea83e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0321

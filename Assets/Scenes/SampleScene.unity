@@ -3872,6 +3872,10 @@ PrefabInstance:
       value: Limite_cuadro
       objectReference: {fileID: 0}
     - target: {fileID: 5088214884118509514, guid: 2aa5e102ac0693140a59860c76bb3911, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088214884118509514, guid: 2aa5e102ac0693140a59860c76bb3911, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 98a16e77fd21c254ea479e01ff2edf44, type: 2}
@@ -3918,6 +3922,10 @@ PrefabInstance:
     - target: {fileID: 5378193732418211031, guid: 2aa5e102ac0693140a59860c76bb3911, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7180550444285970600, guid: 2aa5e102ac0693140a59860c76bb3911, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1877482714930634616, guid: 2aa5e102ac0693140a59860c76bb3911, type: 3}
